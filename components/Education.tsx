@@ -207,7 +207,7 @@ export default function Education() {
                         </div>
                         Key Achievements
                     </motion.h3>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {achievements.map((achievement, index) => (
                             <motion.div
                                 key={index}
