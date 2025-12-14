@@ -1,21 +1,42 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
-import { Mail, Linkedin, Github, MapPin, Send, Phone, MessageCircle, Clock, Sparkles, CheckCircle, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Send, Phone, MessageCircle, Clock, Sparkles, CheckCircle, ArrowRight, Loader2, Check } from "lucide-react";
 
 export default function Contact() {
     const ref = useRef(null);
+    const formRef = useRef<HTMLFormElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
-    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [formData, setFormData] = useState({ name: "", email: "", message: "", subject: "" });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+
         setIsSubmitting(true);
-        const mailtoLink = `mailto:er.aamirkhann@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${formData.name}%0AEmail: ${formData.email}`;
-        window.location.href = mailtoLink;
-        setTimeout(() => setIsSubmitting(false), 1000);
+        setSubmitStatus("idle");
+
+        try {
+            await emailjs.sendForm(
+                "service_zsujenu",
+                "template_oxzjnvs",
+                formRef.current!,
+                "M0BJ5sXdivcKikoE2"
+            );
+            setSubmitStatus("success");
+            setFormData({ name: "", email: "", message: "", subject: "" });
+            setTimeout(() => setSubmitStatus("idle"), 5000);
+        } catch (error) {
+            console.error("EmailJS Error:", error);
+            setSubmitStatus("error");
+            setTimeout(() => setSubmitStatus("idle"), 5000);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const contactInfo = [
@@ -158,7 +179,36 @@ export default function Contact() {
 
                     {/* Contact Form */}
                     <motion.div initial={{ opacity: 0, x: 50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.4 }} className="h-full">
-                        <form onSubmit={handleSubmit} className="glass p-8 rounded-2xl space-y-6 h-full flex flex-col">
+                        <form ref={formRef} onSubmit={handleSubmit} className="glass p-8 rounded-2xl space-y-6 h-full flex flex-col relative overflow-hidden">
+                            {/* Success Overlay */}
+                            {submitStatus === "success" && (
+                                <div className="absolute inset-0 bg-[var(--surface)]/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-in fade-in duration-300">
+                                    <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4 text-green-500">
+                                        <CheckCircle className="w-8 h-8" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                                    <p className="opacity-70">Thanks for reaching out. I&apos;ll get back to you shortly.</p>
+                                </div>
+                            )}
+
+                            {/* Error Overlay */}
+                            {submitStatus === "error" && (
+                                <div className="absolute inset-0 bg-[var(--surface)]/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-in fade-in duration-300">
+                                    <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-4 text-red-500">
+                                        <CheckCircle className="w-8 h-8 rotate-45" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold mb-2">Something went wrong</h3>
+                                    <p className="opacity-70 mb-6">Failed to send message. Please try again later.</p>
+                                    <button
+                                        type="button"
+                                        onClick={() => setSubmitStatus("idle")}
+                                        className="px-6 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg transition-colors font-medium"
+                                    >
+                                        Try Again
+                                    </button>
+                                </div>
+                            )}
+
                             <div className="flex items-center gap-3 mb-2">
                                 <div className="p-3 bg-gradient-to-r from-accent to-primary rounded-xl">
                                     <Send className="w-6 h-6 text-white" />
@@ -175,6 +225,7 @@ export default function Contact() {
                                     <input
                                         type="text"
                                         id="name"
+                                        name="name"
                                         required
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -187,6 +238,7 @@ export default function Contact() {
                                     <input
                                         type="email"
                                         id="email"
+                                        name="email"
                                         required
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -202,6 +254,9 @@ export default function Contact() {
                                 <input
                                     type="text"
                                     id="subject"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                                     className="w-full px-4 py-3 bg-[var(--surface-variant)] rounded-xl border-2 border-transparent focus:border-primary focus:ring-0 outline-none transition-all"
                                     placeholder="Project Inquiry / Collaboration / Job Opportunity"
                                 />
@@ -211,6 +266,7 @@ export default function Contact() {
                                 <label htmlFor="message" className="block text-sm font-medium mb-2">Your Message</label>
                                 <textarea
                                     id="message"
+                                    name="message"
                                     rows={5}
                                     required
                                     value={formData.message}
