@@ -29,10 +29,10 @@ export default function Navigation() {
             document.documentElement.classList.remove("dark");
         }
 
-        // Cycle through stacks every 3 seconds
+        // Cycle through stacks every 2 seconds
         const interval = setInterval(() => {
             setCurrentStack((prev) => (prev + 1) % 4);
-        }, 3000);
+        }, 2000);
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
