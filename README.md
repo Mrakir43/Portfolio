@@ -72,4 +72,4 @@ Portfolio/
 
 ---
 
-© 2024 Aamir Khan. All Rights Reserved.
+© 2025 Aamir Khan. All Rights Reserved.
