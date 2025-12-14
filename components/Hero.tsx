@@ -232,21 +232,25 @@ export default function Hero() {
                     </motion.div>
                 </div>
 
-                {/* Scroll Indicator */}
+                {/* Scroll Indicator - Premium */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5 }}
                     className="absolute bottom-10 left-1/2 -translate-x-1/2"
                 >
-                    <a href="#services" className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer group">
-                        <span className="text-sm font-medium">Scroll to explore</span>
-                        <motion.div
-                            animate={{ y: [0, 8, 0] }}
-                            transition={{ repeat: Infinity, duration: 1.5 }}
-                        >
-                            <ChevronDown className="w-6 h-6" />
-                        </motion.div>
+                    <a href="/#services" className="flex flex-col items-center gap-3 group cursor-pointer">
+                        <div className="relative">
+                            {/* Glowing border */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-primary to-secondary rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity"></div>
+                            <div className="relative w-7 h-12 border-2 border-white/30 group-hover:border-primary/50 rounded-full flex justify-center pt-2 transition-colors">
+                                <motion.div
+                                    animate={{ y: [0, 12, 0] }}
+                                    transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+                                    className="w-1.5 h-3 bg-gradient-to-b from-primary to-secondary rounded-full"
+                                ></motion.div>
+                            </div>
+                        </div>
                     </a>
                 </motion.div>
             </div>

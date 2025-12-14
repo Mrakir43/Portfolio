@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Award, Trophy, ExternalLink, School, BookOpen } from "lucide-react";
+import { GraduationCap, Award, Trophy, School, BookOpen, Sparkles, CheckCircle, Star } from "lucide-react";
 
 export default function Education() {
     const ref = useRef(null);
@@ -50,69 +50,103 @@ export default function Education() {
     ];
 
     const achievements = [
-        { icon: "🏆", text: "Ranked 2nd in College Aptitude Test Competition" },
-        { icon: "⚡", text: "Enhanced backend throughput by 30%" },
-        { icon: "🌍", text: "100% on-time global project deliverables" },
-        { icon: "🚀", text: "5+ scalable cloud applications deployed" },
+        { icon: "🏆", text: "Ranked 2nd in College Aptitude Test Competition", color: "from-yellow-500 to-orange-500" },
+        { icon: "⚡", text: "Enhanced backend throughput by 30%", color: "from-blue-500 to-cyan-500" },
+        { icon: "🌍", text: "100% on-time global project deliverables", color: "from-green-500 to-emerald-500" },
+        { icon: "🚀", text: "5+ scalable cloud applications deployed", color: "from-purple-500 to-pink-500" },
     ];
 
     return (
-        <section id="education" ref={ref}>
-            <div className="container mx-auto px-4">
-                <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <section id="education" ref={ref} className="relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/3 rounded-full blur-3xl"></div>
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10">
+                {/* Header */}
+                <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6">
+                        <GraduationCap className="w-4 h-4 text-accent" />
+                        <span className="text-sm font-medium">Academic Background</span>
+                    </div>
+                    <h2 className="text-4xl md:text-6xl font-bold mb-4">
                         Education & <span className="gradient-text">Certifications</span>
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-primary via-secondary to-accent mx-auto mb-6"></div>
                 </motion.div>
 
-                {/* Education Card */}
-                <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }} className="glass p-8 rounded-2xl mb-12 max-w-4xl mx-auto">
-                    <div className="flex items-start gap-6">
-                        <div className="p-4 bg-primary/20 rounded-xl hidden sm:block">
-                            <GraduationCap className="w-12 h-12 text-primary" />
+                {/* Main Education Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5 }}
+                    className="glass p-8 rounded-2xl mb-12 max-w-4xl mx-auto relative overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 group"
+                >
+                    {/* Gradient Top Border */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent"></div>
+
+                    {/* Gradient Background on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <div className="flex items-start gap-6 relative z-10">
+                        <div className="p-4 bg-gradient-to-br from-primary to-secondary rounded-2xl hidden sm:block group-hover:scale-110 transition-transform duration-300">
+                            <GraduationCap className="w-12 h-12 text-white" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="text-2xl font-bold mb-2">{education.degree}</h3>
+                            <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">{education.degree}</h3>
                             <p className="text-xl text-secondary font-medium mb-2">{education.field}</p>
                             <p className="opacity-70 mb-4">{education.institution}</p>
                             <div className="flex flex-wrap gap-3">
-                                <span className="px-4 py-2 bg-primary/20 text-primary rounded-lg text-sm font-semibold">{education.period}</span>
-                                <span className="px-4 py-2 bg-green-500/20 text-green-400 rounded-lg text-sm font-semibold">{education.grade}</span>
-                                <span className="px-4 py-2 glass rounded-lg text-sm">{education.location}</span>
+                                <span className="px-4 py-2 bg-gradient-to-r from-primary/20 to-primary/10 text-primary rounded-xl text-sm font-semibold border border-primary/20">{education.period}</span>
+                                <span className="px-4 py-2 bg-gradient-to-r from-green-500/20 to-green-500/10 text-green-400 rounded-xl text-sm font-semibold border border-green-500/20">{education.grade}</span>
+                                <span className="px-4 py-2 glass rounded-xl text-sm border border-white/10">{education.location}</span>
                             </div>
                         </div>
                     </div>
                 </motion.div>
 
                 {/* School Education */}
-                <div className="mb-12 max-w-4xl mx-auto">
-                    <h3 className="text-2xl font-bold mb-8 text-center flex items-center justify-center gap-3">
-                        <School className="w-7 h-7 text-secondary" />
+                <div className="mb-16 max-w-4xl mx-auto">
+                    <motion.h3
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.2 }}
+                        className="text-2xl font-bold mb-8 text-center flex items-center justify-center gap-3"
+                    >
+                        <div className="p-2 bg-gradient-to-r from-secondary to-accent rounded-lg">
+                            <School className="w-5 h-5 text-white" />
+                        </div>
                         School Education
-                    </h3>
+                    </motion.h3>
                     <div className="grid md:grid-cols-2 gap-6">
                         {schoolEducation.map((school, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                                className="glass p-6 rounded-xl card-hover relative overflow-hidden"
+                                transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                                className="group"
                             >
-                                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${school.color}`}></div>
-                                <div className="flex items-start gap-4">
-                                    <div className={`p-3 rounded-lg bg-gradient-to-r ${school.color} bg-opacity-20`}>
-                                        <school.icon className="w-6 h-6 text-white" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <h4 className="text-lg font-bold mb-1">{school.level}</h4>
-                                        <p className="opacity-70 text-sm mb-3">{school.institution}</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            <span className="px-3 py-1 bg-primary/20 text-primary rounded-lg text-xs font-semibold">{school.period}</span>
-                                            <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg text-xs font-semibold">{school.grade}</span>
-                                            <span className="px-3 py-1 glass rounded-lg text-xs">{school.board}</span>
-                                            <span className="px-3 py-1 glass rounded-lg text-xs">{school.stream}</span>
+                                <div className="glass p-6 rounded-2xl h-full relative overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500">
+                                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${school.color} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${school.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+
+                                    <div className="flex items-start gap-4 relative z-10">
+                                        <div className={`p-3 rounded-xl bg-gradient-to-br ${school.color} text-white group-hover:scale-110 transition-transform duration-300`}>
+                                            <school.icon className="w-6 h-6" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h4 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">{school.level}</h4>
+                                            <p className="opacity-70 text-sm mb-3">{school.institution}</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                <span className="px-3 py-1 bg-primary/20 text-primary rounded-lg text-xs font-semibold">{school.period}</span>
+                                                <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg text-xs font-semibold">{school.grade}</span>
+                                                <span className="px-3 py-1 glass rounded-lg text-xs">{school.board}</span>
+                                                <span className="px-3 py-1 glass rounded-lg text-xs">{school.stream}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -122,20 +156,39 @@ export default function Education() {
                 </div>
 
                 {/* Certifications Grid */}
-                <div className="mb-12">
-                    <h3 className="text-2xl font-bold mb-8 text-center flex items-center justify-center gap-3">
-                        <Award className="w-7 h-7 text-accent" />
+                <div className="mb-16">
+                    <motion.h3
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.4 }}
+                        className="text-2xl font-bold mb-8 text-center flex items-center justify-center gap-3"
+                    >
+                        <div className="p-2 bg-gradient-to-r from-accent to-primary rounded-lg">
+                            <Award className="w-5 h-5 text-white" />
+                        </div>
                         Professional Certifications
-                    </h3>
+                    </motion.h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
                         {certifications.map((cert, index) => (
-                            <motion.div key={index} initial={{ opacity: 0, scale: 0.9 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ delay: index * 0.1, duration: 0.4 }} className="glass p-5 rounded-xl card-hover relative overflow-hidden group">
-                                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cert.color}`}></div>
-                                <div className="flex items-start justify-between mb-2">
-                                    <h4 className="font-bold text-lg leading-tight pr-2">{cert.name}</h4>
-                                    <span className="text-xs opacity-60 whitespace-nowrap">{cert.year}</span>
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                                transition={{ delay: 0.5 + index * 0.08, duration: 0.4 }}
+                                className="group"
+                            >
+                                <div className="glass p-5 rounded-2xl h-full relative overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500">
+                                    <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${cert.color} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-start justify-between mb-3">
+                                            <h4 className="font-bold text-base leading-tight pr-2 group-hover:text-primary transition-colors">{cert.name}</h4>
+                                            <span className="px-2 py-0.5 bg-white/10 rounded text-xs opacity-60 whitespace-nowrap">{cert.year}</span>
+                                        </div>
+                                        <p className={`text-sm font-medium bg-gradient-to-r ${cert.color} bg-clip-text text-transparent`}>{cert.issuer}</p>
+                                    </div>
                                 </div>
-                                <p className={`text-sm font-medium bg-gradient-to-r ${cert.color} bg-clip-text text-transparent`}>{cert.issuer}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -143,15 +196,33 @@ export default function Education() {
 
                 {/* Achievements */}
                 <div className="max-w-4xl mx-auto">
-                    <h3 className="text-2xl font-bold mb-6 text-center flex items-center justify-center gap-3">
-                        <Trophy className="w-7 h-7 text-yellow-500" />
+                    <motion.h3
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.6 }}
+                        className="text-2xl font-bold mb-8 text-center flex items-center justify-center gap-3"
+                    >
+                        <div className="p-2 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg">
+                            <Trophy className="w-5 h-5 text-white" />
+                        </div>
                         Key Achievements
-                    </h3>
+                    </motion.h3>
                     <div className="grid sm:grid-cols-2 gap-4">
                         {achievements.map((achievement, index) => (
-                            <motion.div key={index} initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }} className="glass p-4 rounded-xl flex items-center gap-4 card-hover">
-                                <span className="text-2xl">{achievement.icon}</span>
-                                <span className="font-medium">{achievement.text}</span>
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                                transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
+                                className="group"
+                            >
+                                <div className="glass p-5 rounded-2xl flex items-center gap-4 relative overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500">
+                                    <div className={`absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b ${achievement.color}`}></div>
+                                    <div className={`absolute inset-0 bg-gradient-to-r ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+
+                                    <span className="text-3xl relative z-10">{achievement.icon}</span>
+                                    <span className="font-medium relative z-10">{achievement.text}</span>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

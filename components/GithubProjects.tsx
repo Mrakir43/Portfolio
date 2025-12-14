@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Github, Star } from "lucide-react";
+import { Github, Star, GitFork, Code, Sparkles, ArrowUpRight } from "lucide-react";
 
 export default function GithubProjects() {
     const ref = useRef(null);
@@ -20,7 +20,7 @@ export default function GithubProjects() {
         {
             name: "SmartRentalManager",
             description: "Clean Architecture Android app for managing rental properties, tenants, and payments with comprehensive financial tracking.",
-            techStack: ["Kotlin", "Jetpack Compose", "Room DB", "MVVM", "Hilt"],
+            techStack: ["Kotlin", "Jetpack Compose", "Room DB", "Hilt"],
             github: "https://github.com/Mrakir43/SmartRentalManager",
             stars: 1,
             gradient: "from-blue-500 to-cyan-500",
@@ -28,7 +28,7 @@ export default function GithubProjects() {
         {
             name: "Kiraya-Book",
             description: "Android application for landlords and tenants to manage rentals efficiently with modern Material Design 3 UI.",
-            techStack: ["Kotlin", "Jetpack Compose", "Material Design 3", "Coroutines"],
+            techStack: ["Kotlin", "Jetpack Compose", "Material Design 3"],
             github: "https://github.com/Mrakir43/Kiraya-Book",
             stars: 1,
             gradient: "from-purple-500 to-pink-500",
@@ -84,47 +84,102 @@ export default function GithubProjects() {
     ];
 
     return (
-        <section id="github-projects" ref={ref}>
-            <div className="container mx-auto px-4">
-                <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <section id="github-projects" ref={ref} className="relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10">
+                {/* Header */}
+                <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6">
+                        <Code className="w-4 h-4 text-accent" />
+                        <span className="text-sm font-medium">Open Source</span>
+                    </div>
+                    <h2 className="text-4xl md:text-6xl font-bold mb-4">
                         GitHub <span className="gradient-text">Projects</span>
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-primary via-secondary to-accent mx-auto mb-6"></div>
                     <p className="text-lg opacity-70 max-w-2xl mx-auto">Open-source projects and personal experiments</p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Projects Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {projects.map((project, index) => (
-                        <motion.div key={index} initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: index * 0.1, duration: 0.5 }} className="glass p-6 rounded-xl card-hover flex flex-col h-full">
-                            <div className="flex items-start justify-between mb-4">
-                                <div className={`p-3 rounded-lg bg-gradient-to-r ${project.gradient} bg-opacity-20`}>
-                                    <Github className="w-6 h-6" />
-                                </div>
-                                {project.stars > 0 && (
-                                    <div className="flex items-center gap-1 text-yellow-500">
-                                        <Star className="w-4 h-4 fill-current" />
-                                        <span className="text-sm font-medium">{project.stars}</span>
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: index * 0.08, duration: 0.5 }}
+                            className="group"
+                        >
+                            <div className="glass p-5 rounded-2xl h-full flex flex-col relative overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500">
+                                {/* Animated Gradient Top Border */}
+                                <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${project.gradient} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+
+                                {/* Gradient Background on Hover */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+
+                                {/* Header */}
+                                <div className="flex items-start justify-between mb-4 relative z-10">
+                                    <div className={`p-2.5 rounded-lg bg-gradient-to-br ${project.gradient} text-white group-hover:scale-110 transition-transform duration-300`}>
+                                        <Github className="w-5 h-5" />
                                     </div>
-                                )}
+                                    {project.stars > 0 && (
+                                        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-yellow-500/10 rounded-full text-yellow-500 border border-yellow-500/20">
+                                            <Star className="w-3.5 h-3.5 fill-current" />
+                                            <span className="text-xs font-semibold">{project.stars}</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Content */}
+                                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors relative z-10">{project.name}</h3>
+                                <p className="opacity-70 mb-4 flex-grow text-sm leading-relaxed relative z-10">{project.description}</p>
+
+                                {/* Tech Stack */}
+                                <div className="flex flex-wrap gap-1.5 mb-4 relative z-10">
+                                    {project.techStack.map((tech, idx) => (
+                                        <span key={idx} className="px-2 py-0.5 text-xs bg-white/5 rounded-md opacity-70">{tech}</span>
+                                    ))}
+                                </div>
+
+                                {/* CTA */}
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-4 py-2.5 glass rounded-xl text-sm font-medium hover:bg-white/10 transition-all flex items-center justify-center gap-2 relative z-10 border border-white/10 hover:border-white/20 group/btn"
+                                >
+                                    <Github className="w-4 h-4" />
+                                    <span>View Code</span>
+                                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                </a>
                             </div>
-
-                            <h3 className="text-xl font-bold mb-2">{project.name}</h3>
-                            <p className="opacity-70 mb-4 flex-grow text-sm leading-relaxed">{project.description}</p>
-
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {project.techStack.map((tech, idx) => (
-                                    <span key={idx} className={`px-2 py-1 text-xs bg-gradient-to-r ${project.gradient} bg-opacity-10 rounded-md`}>{tech}</span>
-                                ))}
-                            </div>
-
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="px-4 py-2 glass rounded-lg text-sm font-medium hover:scale-105 transition-transform flex items-center justify-center gap-2 mt-auto">
-                                <Github className="w-4 h-4" />
-                                View Code
-                            </a>
                         </motion.div>
                     ))}
                 </div>
+
+                {/* GitHub Link */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.8 }}
+                    className="text-center mt-12"
+                >
+                    <a
+                        href="https://github.com/Mrakir43"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-700 to-gray-900 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
+                    >
+                        <Github className="w-5 h-5" />
+                        View All on GitHub
+                        <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                </motion.div>
             </div>
         </section>
     );

@@ -6,13 +6,13 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     const links = [
-        { href: "#home", label: "Home" },
-        { href: "#about", label: "About" },
-        { href: "#skills", label: "Skills" },
-        { href: "#experience", label: "Experience" },
-        { href: "#projects", label: "Projects" },
-        { href: "#education", label: "Education" },
-        { href: "#contact", label: "Contact" },
+        { href: "/#home", label: "Home" },
+        { href: "/#about", label: "About" },
+        { href: "/#skills", label: "Skills" },
+        { href: "/#experience", label: "Experience" },
+        { href: "/#projects", label: "Projects" },
+        { href: "/#education", label: "Education" },
+        { href: "/#contact", label: "Contact" },
     ];
 
     const socials = [

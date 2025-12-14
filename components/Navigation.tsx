@@ -47,13 +47,13 @@ export default function Navigation() {
     };
 
     const navLinks = [
-        { href: "#home", label: "Home" },
-        { href: "#services", label: "Services" },
-        { href: "#about", label: "About" },
-        { href: "#skills", label: "Skills" },
-        { href: "#experience", label: "Experience" },
-        { href: "#projects", label: "Projects" },
-        { href: "#contact", label: "Contact" },
+        { href: "/#home", label: "Home" },
+        { href: "/#services", label: "Services" },
+        { href: "/#about", label: "About" },
+        { href: "/#skills", label: "Skills" },
+        { href: "/#experience", label: "Experience" },
+        { href: "/#projects", label: "Projects" },
+        { href: "/#contact", label: "Contact" },
     ];
 
     return (
