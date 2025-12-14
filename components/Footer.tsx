@@ -42,7 +42,7 @@ export default function Footer() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Top Section */}
                 <div className="py-16 border-b border-[var(--border)] flex flex-col h-full">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 h-full items-stretch flex-1">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 h-full items-stretch flex-1">
                         {/* Branding */}
                         <div className="lg:col-span-1 flex flex-col justify-between h-full">
                             <div className="flex items-center gap-3 mb-4">

@@ -115,7 +115,7 @@ export default function About() {
 
                     {/* Right Column - Strengths */}
                     <motion.div initial={{ opacity: 0, x: 50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.4 }}>
-                        <div className="grid grid-cols-2 gap-4 h-full">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
                             {strengths.map((item, index) => (
                                 <motion.div
                                     key={index}
