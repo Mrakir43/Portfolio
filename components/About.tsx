@@ -73,7 +73,7 @@ export default function About() {
                 <div className="grid lg:grid-cols-2 gap-12">
                     {/* Left Column - Story */}
                     <motion.div initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
-                        <div className="glass p-8 rounded-2xl h-full">
+                        <div className="glass p-5 sm:p-6 md:p-8 rounded-2xl h-full">
                             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
                                 <div className="p-2 bg-gradient-to-r from-primary to-secondary rounded-lg text-white">
                                     <Sparkles className="w-5 h-5" />
@@ -122,7 +122,7 @@ export default function About() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                                     transition={{ delay: 0.5 + index * 0.1 }}
-                                    className="glass p-6 rounded-2xl group hover:scale-105 transition-all duration-300 relative overflow-hidden flex flex-col"
+                                    className="glass p-4 sm:p-5 md:p-6 rounded-2xl group hover:scale-105 transition-all duration-300 relative overflow-hidden flex flex-col"
                                 >
                                     {/* Gradient Background on Hover */}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>

@@ -140,7 +140,7 @@ export default function Services() {
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                         >
-                            <div className={`glass p-6 rounded-2xl h-full flex flex-col transition-all duration-500 relative overflow-hidden border border-white/5 hover:border-white/20 ${hoveredIndex === index ? `scale-[1.03] ${service.shadowColor} shadow-2xl` : ''}`}>
+                            <div className={`glass p-4 sm:p-5 md:p-6 rounded-2xl h-full flex flex-col transition-all duration-500 relative overflow-hidden border border-white/5 hover:border-white/20 ${hoveredIndex === index ? `scale-[1.03] ${service.shadowColor} shadow-2xl` : ''}`}>
                                 {/* Animated Gradient Background */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
 
