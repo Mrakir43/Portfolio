@@ -28,13 +28,13 @@ export default function About() {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
                         <p className="text-lg mb-6 opacity-80 leading-relaxed">
-                            I&apos;m a <strong>passionate freelance developer</strong> with expertise in building modern, scalable web and mobile applications. With a strong foundation in both frontend and backend technologies, I deliver complete digital solutions.
+                            I&apos;m a <strong>passionate freelance developer</strong> with expertise in building modern, scalable web and mobile applications. From custom React/Next.js apps to WordPress websites, I deliver complete digital solutions tailored to your needs.
                         </p>
                         <p className="text-lg mb-6 opacity-80 leading-relaxed">
-                            Currently working as a <strong>Freelance Website Designer & Developer</strong>, I&apos;ve successfully delivered projects for clients including <span className="text-primary font-medium">sairatimes.com</span>, <span className="text-primary font-medium">dcinterior.co.in</span>, and <span className="text-primary font-medium">renteases.lovable.app</span>.
+                            Currently working as a <strong>Freelance Website Designer & Developer</strong>, I provide <strong>end-to-end website deployment</strong> services—from design and development to domain setup, hosting, and launch. Successfully delivered projects including <span className="text-primary font-medium">sairatimes.com</span>, <span className="text-primary font-medium">dcinterior.co.in</span>, and <span className="text-primary font-medium">renteases.lovable.app</span>.
                         </p>
                         <p className="text-lg opacity-80 leading-relaxed">
-                            My goal is to help businesses establish a strong digital presence through high-quality, performant applications that drive results and enhance user experience.
+                            Whether you need a custom-coded website, a WordPress site, or a full-stack application, I help businesses establish a strong digital presence with high-quality, performant solutions that drive results.
                         </p>
                     </motion.div>
 

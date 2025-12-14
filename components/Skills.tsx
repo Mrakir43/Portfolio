@@ -9,33 +9,33 @@ export default function Skills() {
 
     const skillCategories = [
         {
-            title: "Frontend",
-            skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML5", "CSS3"],
+            title: "Programming Languages",
+            skills: ["Python", "Java", "JavaScript", "TypeScript", "C++", "SQL"],
             color: "from-blue-500 to-cyan-500",
         },
         {
-            title: "Backend",
-            skills: ["Node.js", "Python", "REST APIs", "PostgreSQL", "MySQL", "Firebase"],
-            color: "from-green-500 to-emerald-500",
-        },
-        {
-            title: "Mobile Development",
-            skills: ["Android", "Kotlin", "Jetpack Compose", "Material Design 3", "Room Database"],
+            title: "Frontend",
+            skills: ["React.js", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "Bootstrap"],
             color: "from-purple-500 to-pink-500",
         },
         {
-            title: "Tools & Platforms",
-            skills: ["Git", "VS Code", "Android Studio", "Vercel", "GitHub", "Figma"],
+            title: "Backend & Frameworks",
+            skills: ["Node.js", "Spring Boot", "FastAPI", "Flask", "Hibernate ORM", "REST APIs"],
+            color: "from-green-500 to-emerald-500",
+        },
+        {
+            title: "Cloud & DevOps",
+            skills: ["AWS (EC2, S3, Lambda)", "Docker", "GitHub Actions", "Jenkins", "CI/CD", "Vercel"],
             color: "from-orange-500 to-red-500",
         },
         {
-            title: "Languages",
-            skills: ["JavaScript", "TypeScript", "Python", "Kotlin", "Java", "SQL"],
-            color: "from-indigo-500 to-purple-500",
+            title: "AI & Machine Learning",
+            skills: ["TensorFlow", "LangChain", "OpenAI GPT", "NLP", "Prompt Engineering", "GitHub Copilot"],
+            color: "from-cyan-500 to-blue-500",
         },
         {
-            title: "Concepts",
-            skills: ["MVVM", "Clean Architecture", "RESTful APIs", "Responsive Design", "SEO"],
+            title: "Databases & Tools",
+            skills: ["MySQL", "PostgreSQL", "MongoDB", "Firebase", "WordPress", "Figma"],
             color: "from-pink-500 to-rose-500",
         },
     ];
@@ -53,7 +53,7 @@ export default function Skills() {
                     </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                     {skillCategories.map((category, categoryIndex) => (
                         <motion.div key={categoryIndex} initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: categoryIndex * 0.1, duration: 0.5 }} className="glass p-6 rounded-xl card-hover">
                             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">

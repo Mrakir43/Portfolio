@@ -69,6 +69,37 @@ body {
 
 section {
     padding: 5rem 1rem;
+    position: relative;
+}
+
+/* Alternating section backgrounds */
+section:nth-of-type(odd) {
+    background: var(--background);
+}
+
+section:nth-of-type(even) {
+    background: var(--surface);
+}
+
+/* Gradient mesh backgrounds for specific sections */
+section:nth-of-type(2) {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(139, 92, 246, 0.03) 50%, rgba(236, 72, 153, 0.03) 100%);
+}
+
+section:nth-of-type(4) {
+    background: linear-gradient(45deg, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+                var(--surface);
+}
+
+section:nth-of-type(6) {
+    background: linear-gradient(180deg, var(--surface) 0%, rgba(99, 102, 241, 0.03) 50%, var(--surface) 100%);
+}
+
+section:nth-of-type(8) {
+    background: radial-gradient(ellipse at top right, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+                var(--surface);
 }
 
 @media (min-width: 768px) {

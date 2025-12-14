@@ -2,12 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, Code, Smartphone, Brain, Cloud } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDark, setIsDark] = useState(true);
+    const [currentStack, setCurrentStack] = useState(0);
+
+    const stacks = [
+        { icon: <Code className="w-5 h-5 text-white" />, title: "Full Stack Developer", color: "from-blue-500 to-cyan-500" },
+        { icon: <Smartphone className="w-5 h-5 text-white" />, title: "Mobile Developer", color: "from-green-500 to-emerald-500" },
+        { icon: <Brain className="w-5 h-5 text-white" />, title: "AI/ML Engineer", color: "from-purple-500 to-pink-500" },
+        { icon: <Cloud className="w-5 h-5 text-white" />, title: "Cloud Architect", color: "from-orange-500 to-red-500" },
+    ];
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -20,7 +29,15 @@ export default function Navigation() {
             document.documentElement.classList.remove("dark");
         }
 
-        return () => window.removeEventListener("scroll", handleScroll);
+        // Cycle through stacks every 3 seconds
+        const interval = setInterval(() => {
+            setCurrentStack((prev) => (prev + 1) % 4);
+        }, 3000);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            clearInterval(interval);
+        };
     }, []);
 
     const toggleTheme = () => {
@@ -31,6 +48,7 @@ export default function Navigation() {
 
     const navLinks = [
         { href: "#home", label: "Home" },
+        { href: "#services", label: "Services" },
         { href: "#about", label: "About" },
         { href: "#skills", label: "Skills" },
         { href: "#experience", label: "Experience" },
@@ -41,41 +59,110 @@ export default function Navigation() {
     return (
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass shadow-lg py-3" : "bg-transparent py-5"}`}>
             <div className="container mx-auto px-4 flex items-center justify-between">
-                <Link href="/" className="text-2xl font-bold gradient-text">
-                    Aamir Khan
+                {/* Premium Animated Logo */}
+                <Link href="/" className="flex items-center gap-3 group">
+                    {/* Animated Logo Icon */}
+                    <div className="relative">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentStack}
+                                initial={{ rotateY: 90, opacity: 0 }}
+                                animate={{ rotateY: 0, opacity: 1 }}
+                                exit={{ rotateY: -90, opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className={`w-10 h-10 bg-gradient-to-br ${stacks[currentStack].color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}
+                            >
+                                {stacks[currentStack].icon}
+                            </motion.div>
+                        </AnimatePresence>
+                        {/* Glow Effect */}
+                        <motion.div
+                            key={`glow-${currentStack}`}
+                            className={`absolute inset-0 bg-gradient-to-br ${stacks[currentStack].color} rounded-xl blur-lg opacity-40 -z-10 group-hover:opacity-60 transition-opacity`}
+                        ></motion.div>
+                    </div>
+
+                    {/* Name with Animated Title */}
+                    <div className="flex flex-col">
+                        <span className="text-xl font-bold leading-none">
+                            <span className="gradient-text">A</span>
+                            <span className="text-[var(--foreground)]">amir</span>
+                            <span className="gradient-text ml-1">K</span>
+                            <span className="text-[var(--foreground)]">han</span>
+                        </span>
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={currentStack}
+                                initial={{ opacity: 0, y: 5 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -5 }}
+                                transition={{ duration: 0.2 }}
+                                className="text-[10px] uppercase tracking-widest opacity-60 font-medium"
+                            >
+                                {stacks[currentStack].title}
+                            </motion.span>
+                        </AnimatePresence>
+                    </div>
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-1">
                     {navLinks.map((link) => (
-                        <a key={link.href} href={link.href} className="text-sm font-medium hover:text-primary-light transition-colors">
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            className="px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-200"
+                        >
                             {link.label}
                         </a>
                     ))}
-                    <button onClick={toggleTheme} className="p-2 rounded-lg glass hover:scale-110 transition-all" aria-label="Toggle theme">
+                    <div className="w-px h-6 bg-[var(--border)] mx-2"></div>
+                    <button
+                        onClick={toggleTheme}
+                        className="p-2.5 rounded-xl glass hover:scale-110 transition-all"
+                        aria-label="Toggle theme"
+                    >
                         {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-primary" />}
                     </button>
                 </div>
 
-                {/* Mobile Menu */}
+                {/* Mobile Menu Button */}
                 <div className="md:hidden flex items-center gap-3">
-                    <button onClick={toggleTheme} className="p-2 rounded-lg glass" aria-label="Toggle theme">
+                    <button
+                        onClick={toggleTheme}
+                        className="p-2 rounded-lg glass"
+                        aria-label="Toggle theme"
+                    >
                         {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5" />}
                     </button>
-                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2">
-                        {isMobileMenuOpen ? <X /> : <Menu />}
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className="p-2 glass rounded-lg"
+                    >
+                        {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </button>
                 </div>
             </div>
 
+            {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden glass mt-4 py-4 px-4 mx-4 rounded-lg space-y-3">
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="md:hidden glass mt-4 py-4 px-4 mx-4 rounded-xl space-y-1"
+                >
                     {navLinks.map((link) => (
-                        <a key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="block text-sm font-medium hover:text-primary-light transition-colors">
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block px-4 py-3 text-sm font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-all"
+                        >
                             {link.label}
                         </a>
                     ))}
-                </div>
+                </motion.div>
             )}
         </nav>
     );
