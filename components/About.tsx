@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code, Rocket, Target, Users } from "lucide-react";
+import { Code, Rocket, Target, Users, ExternalLink } from "lucide-react";
 
 export default function About() {
     const ref = useRef(null);
@@ -27,13 +27,27 @@ export default function About() {
 
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
-                        <p className="text-lg mb-6 opacity-80 leading-relaxed">
+                        <p className="text-lg mb-6 opacity-80 leading-relaxed text-justify">
                             I&apos;m a <strong>passionate freelance developer</strong> with expertise in building modern, scalable web and mobile applications. From custom React/Next.js apps to WordPress websites, I deliver complete digital solutions tailored to your needs.
                         </p>
-                        <p className="text-lg mb-6 opacity-80 leading-relaxed">
-                            Currently working as a <strong>Freelance Website Designer & Developer</strong>, I provide <strong>end-to-end website deployment</strong> services—from design and development to domain setup, hosting, and launch. Successfully delivered projects including <span className="text-primary font-medium">sairatimes.com</span>, <span className="text-primary font-medium">dcinterior.co.in</span>, and <span className="text-primary font-medium">renteases.lovable.app</span>.
+                        <p className="text-lg mb-6 opacity-80 leading-relaxed text-justify">
+                            Currently working as a <strong>Freelance Website Designer & Developer</strong>, I provide <strong>end-to-end website deployment</strong> services—from design and development to domain setup, hosting, and launch. Successfully delivered projects:
                         </p>
-                        <p className="text-lg opacity-80 leading-relaxed">
+                        <div className="flex flex-wrap gap-4 mb-6">
+                            <a href="https://sairatimes.com" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 glass rounded-full hover:bg-primary/20 hover:scale-105 border border-white/10 hover:border-primary/30 transition-all flex items-center gap-2 text-sm font-medium group">
+                                sairatimes.com
+                                <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100" />
+                            </a>
+                            <a href="https://dcinterior.co.in" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 glass rounded-full hover:bg-primary/20 hover:scale-105 border border-white/10 hover:border-primary/30 transition-all flex items-center gap-2 text-sm font-medium group">
+                                dcinterior.co.in
+                                <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100" />
+                            </a>
+                            <a href="https://renteases.lovable.app" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 glass rounded-full hover:bg-primary/20 hover:scale-105 border border-white/10 hover:border-primary/30 transition-all flex items-center gap-2 text-sm font-medium group">
+                                renteases.lovable.app
+                                <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100" />
+                            </a>
+                        </div>
+                        <p className="text-lg opacity-80 leading-relaxed text-justify">
                             Whether you need a custom-coded website, a WordPress site, or a full-stack application, I help businesses establish a strong digital presence with high-quality, performant solutions that drive results.
                         </p>
                     </motion.div>

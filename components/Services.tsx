@@ -49,7 +49,7 @@ export default function Services() {
             icon: <Brain className="w-8 h-8" />,
             title: "LLM & ChatGPT Integration",
             description: "Custom AI solutions using OpenAI GPT, LangChain, and RAG for intelligent automation and content generation.",
-            features: ["OpenAI GPT-4", "LangChain", "RAG Systems", "Custom Fine-tuning"],
+            features: ["ChatGPT 4o & o1", "LangChain", "RAG Systems", "Custom Fine-tuning"],
             color: "from-orange-500 to-red-500",
             delay: 0.3,
         },

@@ -41,10 +41,10 @@ export default function Footer() {
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Top Section */}
-                <div className="py-16 border-b border-[var(--border)]">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div className="py-16 border-b border-[var(--border)] flex flex-col h-full">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 h-full items-stretch flex-1">
                         {/* Branding */}
-                        <div className="lg:col-span-1">
+                        <div className="lg:col-span-1 flex flex-col justify-between h-full">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="p-2 bg-gradient-to-r from-primary to-secondary rounded-lg">
                                     <Code className="w-6 h-6 text-white" />
@@ -67,7 +67,7 @@ export default function Footer() {
                         </div>
 
                         {/* Quick Links */}
-                        <div>
+                        <div className="flex flex-col justify-between h-full">
                             <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
                                 <Sparkles className="w-4 h-4 text-primary" />
                                 Quick Links
@@ -88,7 +88,7 @@ export default function Footer() {
                         </div>
 
                         {/* Services */}
-                        <div>
+                        <div className="flex flex-col justify-between h-full">
                             <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
                                 <Code className="w-4 h-4 text-secondary" />
                                 Services
@@ -104,7 +104,7 @@ export default function Footer() {
                         </div>
 
                         {/* Connect Section */}
-                        <div>
+                        <div className="flex flex-col justify-between h-full">
                             <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
                                 <Heart className="w-4 h-4 text-accent" />
                                 Let&apos;s Connect

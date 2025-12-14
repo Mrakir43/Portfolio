@@ -17,9 +17,11 @@ export default function Home() {
             <About />
             <Skills />
             <Experience />
-            <FreelanceProjects />
-            <GithubProjects />
-            <FeaturedProjects />
+            <div id="projects" className="grid gap-8">
+                <FreelanceProjects />
+                <GithubProjects />
+                <FeaturedProjects />
+            </div>
             <Education />
             <Contact />
         </main>

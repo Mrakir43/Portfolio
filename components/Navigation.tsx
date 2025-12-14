@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Moon, Sun, Code, Smartphone, Brain, Cloud } from "lucide-react";
+import { Menu, X, Moon, Sun, Code, Bot, Brain, Cloud } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navigation() {
@@ -13,9 +13,9 @@ export default function Navigation() {
 
     const stacks = [
         { icon: <Code className="w-5 h-5 text-white" />, title: "Full Stack Developer", color: "from-blue-500 to-cyan-500" },
-        { icon: <Smartphone className="w-5 h-5 text-white" />, title: "Mobile Developer", color: "from-green-500 to-emerald-500" },
+        { icon: <Bot className="w-5 h-5 text-white" />, title: "Chatbot Development", color: "from-teal-500 to-cyan-500" },
         { icon: <Brain className="w-5 h-5 text-white" />, title: "AI/ML Engineer", color: "from-purple-500 to-pink-500" },
-        { icon: <Cloud className="w-5 h-5 text-white" />, title: "Cloud Architect", color: "from-orange-500 to-red-500" },
+        { icon: <Cloud className="w-5 h-5 text-white" />, title: "AI Automation", color: "from-orange-500 to-red-500" },
     ];
 
     useEffect(() => {
@@ -62,24 +62,32 @@ export default function Navigation() {
                 {/* Premium Animated Logo */}
                 <Link href="/" className="flex items-center gap-3 group">
                     {/* Animated Logo Icon */}
-                    <div className="relative">
-                        <AnimatePresence mode="wait">
+                    {/* Animated Logo Icon */}
+                    <div className="relative w-10 h-10">
+                        <AnimatePresence>
                             <motion.div
                                 key={currentStack}
-                                initial={{ rotateY: 90, opacity: 0 }}
-                                animate={{ rotateY: 0, opacity: 1 }}
-                                exit={{ rotateY: -90, opacity: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className={`w-10 h-10 bg-gradient-to-br ${stacks[currentStack].color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}
+                                initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                                exit={{ opacity: 0, scale: 0.5, rotate: 10 }}
+                                transition={{
+                                    duration: 0.4,
+                                    ease: "easeInOut"
+                                }}
+                                className={`absolute inset-0 w-full h-full bg-gradient-to-br ${stacks[currentStack].color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}
                             >
                                 {stacks[currentStack].icon}
                             </motion.div>
+                            {/* Glow Effect */}
+                            <motion.div
+                                key={`glow-${currentStack}`}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 0.4 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.4 }}
+                                className={`absolute inset-0 bg-gradient-to-br ${stacks[currentStack].color} rounded-xl blur-lg -z-10 group-hover:opacity-60 transition-opacity`}
+                            ></motion.div>
                         </AnimatePresence>
-                        {/* Glow Effect */}
-                        <motion.div
-                            key={`glow-${currentStack}`}
-                            className={`absolute inset-0 bg-gradient-to-br ${stacks[currentStack].color} rounded-xl blur-lg opacity-40 -z-10 group-hover:opacity-60 transition-opacity`}
-                        ></motion.div>
                     </div>
 
                     {/* Name with Animated Title */}
@@ -96,7 +104,10 @@ export default function Navigation() {
                                 initial={{ opacity: 0, y: 5 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -5 }}
-                                transition={{ duration: 0.2 }}
+                                transition={{
+                                    duration: 0.3,
+                                    ease: "easeInOut"
+                                }}
                                 className="text-[10px] uppercase tracking-widest opacity-60 font-medium"
                             >
                                 {stacks[currentStack].title}
