@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Download, Briefcase, Mail, ChevronDown, Sparkles, Code, Smartphone, Brain, Cloud, Star, Users, CheckCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
     const stats = [
@@ -13,6 +14,22 @@ export default function Hero() {
     const techStack = [
         "React", "Next.js", "Node.js", "Kotlin", "Python", "AWS", "AI/ML"
     ];
+
+    const quotes = [
+        "Crafting Exceptional Digital Experiences",
+        "Building Scalable & Modern Web Solutions",
+        "Transforming Ideas into Digital Reality",
+        "Innovating the Future of Web Development",
+        "Delivering Refreshing Digital Experiences",
+        "Engineering High-Performance Applications"
+    ];
+
+    const [quote, setQuote] = useState("Crafting Exceptional Digital Experiences");
+
+    useEffect(() => {
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        setQuote(randomQuote);
+    }, []);
 
     return (
         <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 lg:pt-24">
@@ -29,6 +46,21 @@ export default function Hero() {
                 <div className="grid lg:grid-cols-2 gap-12 items-stretch">
                     {/* Left Content */}
                     <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="flex flex-col justify-center text-center lg:text-left">
+                        {/* Status Badge - Premium */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="inline-flex items-center self-center lg:self-start gap-3 px-5 py-3 mb-6 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 border border-primary/20 rounded-2xl shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:scale-105 transition-all duration-300"
+                        >
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-primary to-secondary"></span>
+                            </span>
+                            <span className="text-sm font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                                {quote}
+                            </span>
+                        </motion.div>
 
                         {/* Name & Title */}
                         <motion.h1
@@ -219,22 +251,22 @@ export default function Hero() {
                     </motion.div>
                 </div>
 
-                {/* Scroll Indicator - Premium */}
+                {/* Scroll Indicator - Premium & Responsive */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5 }}
-                    className="absolute bottom-4 left-1/2 -translate-x-1/2"
+                    className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 -translate-x-1/2"
                 >
-                    <a href="/#services" className="flex flex-col items-center gap-3 group cursor-pointer">
+                    <a href="/#services" className="flex flex-col items-center gap-2 sm:gap-3 group cursor-pointer">
                         <div className="relative">
                             {/* Glowing border */}
                             <div className="absolute inset-0 bg-gradient-to-b from-primary to-secondary rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity"></div>
-                            <div className="relative w-7 h-12 border-2 border-white/30 group-hover:border-primary/50 rounded-full flex justify-center pt-2 transition-colors">
+                            <div className="relative w-5 h-9 sm:w-6 sm:h-10 md:w-7 md:h-12 border-2 border-white/30 group-hover:border-primary/50 rounded-full flex justify-center pt-1.5 sm:pt-2 transition-colors">
                                 <motion.div
-                                    animate={{ y: [0, 12, 0] }}
+                                    animate={{ y: [0, 8, 0] }}
                                     transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                                    className="w-1.5 h-3 bg-gradient-to-b from-primary to-secondary rounded-full"
+                                    className="w-1 h-2 sm:w-1.5 sm:h-3 bg-gradient-to-b from-primary to-secondary rounded-full"
                                 ></motion.div>
                             </div>
                         </div>

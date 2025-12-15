@@ -194,7 +194,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-stretch">
                     {/* Contact Info */}
                     <motion.div initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }} className="h-full">
-                        <div className="glass p-8 rounded-2xl h-full flex flex-col">
+                        <div className="glass p-4 sm:p-8 rounded-2xl h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="p-3 bg-gradient-to-r from-primary to-secondary rounded-xl">
                                     <MessageCircle className="w-6 h-6 text-white" />
@@ -222,18 +222,18 @@ export default function Contact() {
                                         className="group"
                                     >
                                         {info.href ? (
-                                            <a href={info.href} className="flex items-center gap-4 p-4 bg-[var(--surface-variant)] rounded-xl hover:scale-[1.02] transition-all duration-300 border border-transparent hover:border-primary/30">
+                                            <a href={info.href} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl hover:scale-[1.02] transition-all duration-300 border border-transparent hover:border-primary/30">
                                                 <div className={`p-3 bg-gradient-to-r ${info.color} rounded-lg text-white`}>
                                                     {info.icon}
                                                 </div>
-                                                <div className="flex-1">
+                                                <div className="flex-1 min-w-0">
                                                     <p className="text-xs opacity-60 uppercase tracking-wide">{info.label}</p>
-                                                    <p className="font-medium group-hover:text-primary transition-colors">{info.value}</p>
+                                                    <p className="font-medium group-hover:text-primary transition-colors truncate">{info.value}</p>
                                                 </div>
                                                 <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
                                             </a>
                                         ) : (
-                                            <div className="flex items-center gap-4 p-4 bg-[var(--surface-variant)] rounded-xl">
+                                            <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl">
                                                 <div className={`p-3 bg-gradient-to-r ${info.color} rounded-lg text-white`}>
                                                     {info.icon}
                                                 </div>

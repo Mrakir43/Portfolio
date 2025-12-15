@@ -127,13 +127,13 @@ export default function Footer() {
                                 ))}
                             </div>
 
-                            {/* Status Badge */}
-                            <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 glass rounded-full">
+                            {/* Status Badge - Premium */}
+                            <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-500/10 via-emerald-500/10 to-teal-500/10 border border-green-500/30 rounded-2xl shadow-lg shadow-green-500/10 hover:shadow-green-500/20 hover:scale-105 transition-all duration-300">
                                 <span className="relative flex h-3 w-3">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-green-400 to-emerald-500"></span>
                                 </span>
-                                <span className="text-sm font-medium">Available for work</span>
+                                <span className="text-sm font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">Available for Work</span>
                             </div>
                         </div>
                     </div>
