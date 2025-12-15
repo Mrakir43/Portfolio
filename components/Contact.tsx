@@ -184,9 +184,9 @@ export default function Contact() {
                     className="flex flex-wrap justify-center gap-4 mb-12"
                 >
                     {highlights.map((item, index) => (
-                        <div key={index} className="flex items-center gap-2 px-4 py-2 glass rounded-full">
+                        <div key={index} className="flex items-center gap-2 px-3 sm:px-4 py-2 glass rounded-full">
                             <CheckCircle className="w-4 h-4 text-green-500" />
-                            <span className="text-sm font-medium">{item}</span>
+                            <span className="text-xs sm:text-sm font-medium">{item}</span>
                         </div>
                     ))}
                 </motion.div>
@@ -250,7 +250,7 @@ export default function Contact() {
                             {/* Social Links */}
                             <div className="mt-auto pt-6">
                                 <p className="text-sm font-medium mb-4 opacity-70">Connect on social</p>
-                                <div className="flex gap-4">
+                                <div className="flex flex-wrap gap-3 sm:gap-4">
                                     {socialLinks.map((link, index) => (
                                         <motion.a
                                             key={index}
@@ -260,7 +260,7 @@ export default function Contact() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={isInView ? { opacity: 1, scale: 1 } : {}}
                                             transition={{ delay: 0.5 + index * 0.1 }}
-                                            className={`p-4 bg-gradient-to-r ${link.color} rounded-xl text-white hover:scale-110 transition-all duration-300 shadow-lg ${link.hoverColor}`}
+                                            className={`p-3 sm:p-4 bg-gradient-to-r ${link.color} rounded-xl text-white hover:scale-110 transition-all duration-300 shadow-lg ${link.hoverColor}`}
                                             aria-label={link.label}
                                         >
                                             {link.icon}
@@ -273,7 +273,7 @@ export default function Contact() {
 
                     {/* Contact Form */}
                     <motion.div initial={{ opacity: 0, x: 50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.4 }} className="h-full">
-                        <form ref={formRef} onSubmit={handleSubmit} className="glass p-8 rounded-2xl space-y-6 h-full flex flex-col relative overflow-hidden">
+                        <form ref={formRef} onSubmit={handleSubmit} className="glass p-4 sm:p-8 rounded-2xl space-y-4 sm:space-y-6 h-full flex flex-col relative overflow-hidden">
                             {/* Success Overlay */}
                             {submitStatus === "success" && (
                                 <div className="absolute inset-0 bg-[var(--surface)]/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-in fade-in duration-300">
@@ -306,12 +306,12 @@ export default function Contact() {
                                 </div>
                             )}
 
-                            <div className="flex items-center gap-3 mb-2">
-                                <div className="p-3 bg-gradient-to-r from-accent to-primary rounded-xl">
-                                    <Send className="w-6 h-6 text-white" />
+                            <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                                <div className="p-2 sm:p-3 bg-gradient-to-r from-accent to-primary rounded-xl">
+                                    <Send className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold">Send a Message</h3>
+                                    <h3 className="text-xl sm:text-2xl font-bold">Send a Message</h3>
                                     <p className="text-sm opacity-60">I&apos;ll get back to you soon</p>
                                 </div>
                             </div>
@@ -446,10 +446,10 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.6 }}
-                    className="text-center mt-16 glass p-8 rounded-2xl max-w-3xl mx-auto"
+                    className="text-center mt-12 sm:mt-16 glass p-4 sm:p-8 rounded-2xl max-w-3xl mx-auto"
                 >
-                    <h3 className="text-2xl font-bold mb-3">Prefer a quick chat?</h3>
-                    <p className="opacity-70 mb-6">Schedule a free 15-minute consultation call to discuss your project.</p>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3">Prefer a quick chat?</h3>
+                    <p className="opacity-70 mb-4 sm:mb-6 text-sm sm:text-base">Schedule a free 15-minute consultation call to discuss your project.</p>
                     <a
                         href={`mailto:er.aamirkhann@gmail.com?subject=${encodeURIComponent('Schedule a Call - Project Discussion')}&body=${encodeURIComponent(`Hi Aamir,
 
@@ -469,7 +469,7 @@ Looking forward to connecting with you!
 
 Best regards,
 [Your Name]`)}`}
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
+                        className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg text-sm sm:text-base"
                     >
                         <Phone className="w-5 h-5" />
                         Schedule a Call
