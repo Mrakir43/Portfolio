@@ -193,7 +193,7 @@ export default function Contact() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-stretch">
                     {/* Contact Info */}
-                    <motion.div initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }} className="h-full">
+                    <motion.div initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }} className="h-full w-full overflow-hidden">
                         <div className="glass p-4 sm:p-8 rounded-2xl h-full flex flex-col overflow-hidden">
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="p-3 bg-gradient-to-r from-primary to-secondary rounded-xl">
@@ -212,34 +212,34 @@ export default function Contact() {
                             </p>
 
                             {/* Contact Cards */}
-                            <div className="grid gap-3 sm:gap-4 mb-8 overflow-hidden">
+                            <div className="flex flex-col gap-3 sm:gap-4 mb-8 w-full overflow-hidden">
                                 {contactInfo.map((info, index) => (
                                     <motion.div
                                         key={index}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                                         transition={{ delay: 0.3 + index * 0.1 }}
-                                        className="group w-full max-w-full"
+                                        className="group w-full overflow-hidden"
                                     >
                                         {info.href ? (
-                                            <a href={info.href} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl hover:scale-[1.02] transition-all duration-300 border border-transparent hover:border-primary/30 w-full max-w-full overflow-hidden">
+                                            <a href={info.href} className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-[var(--surface-variant)] rounded-xl hover:scale-[1.02] transition-all duration-300 border border-transparent hover:border-primary/30 w-full overflow-hidden">
                                                 <div className={`p-2 sm:p-3 bg-gradient-to-r ${info.color} rounded-lg text-white shrink-0`}>
                                                     <span className="w-4 h-4 sm:w-5 sm:h-5">{info.icon}</span>
                                                 </div>
                                                 <div className="flex-1 min-w-0">
                                                     <p className="text-xs opacity-60 uppercase tracking-wide">{info.label}</p>
-                                                    <p className="font-medium group-hover:text-primary transition-colors truncate">{info.value}</p>
+                                                    <p className="font-medium group-hover:text-primary transition-colors truncate text-sm sm:text-base">{info.value}</p>
                                                 </div>
                                                 <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary shrink-0" />
                                             </a>
                                         ) : (
-                                            <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl w-full max-w-full overflow-hidden">
+                                            <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-[var(--surface-variant)] rounded-xl w-full overflow-hidden">
                                                 <div className={`p-2 sm:p-3 bg-gradient-to-r ${info.color} rounded-lg text-white shrink-0`}>
                                                     <span className="w-4 h-4 sm:w-5 sm:h-5">{info.icon}</span>
                                                 </div>
                                                 <div className="flex-1 min-w-0">
                                                     <p className="text-xs opacity-60 uppercase tracking-wide">{info.label}</p>
-                                                    <p className="font-medium">{info.value}</p>
+                                                    <p className="font-medium truncate text-sm sm:text-base">{info.value}</p>
                                                 </div>
                                             </div>
                                         )}
