@@ -219,10 +219,10 @@ export default function Contact() {
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                                         transition={{ delay: 0.3 + index * 0.1 }}
-                                        className="group"
+                                        className="group w-full max-w-full"
                                     >
                                         {info.href ? (
-                                            <a href={info.href} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl hover:scale-[1.02] transition-all duration-300 border border-transparent hover:border-primary/30">
+                                            <a href={info.href} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl hover:scale-[1.02] transition-all duration-300 border border-transparent hover:border-primary/30 w-full max-w-full overflow-hidden">
                                                 <div className={`p-2 sm:p-3 bg-gradient-to-r ${info.color} rounded-lg text-white shrink-0`}>
                                                     <span className="w-4 h-4 sm:w-5 sm:h-5">{info.icon}</span>
                                                 </div>
@@ -230,10 +230,10 @@ export default function Contact() {
                                                     <p className="text-xs opacity-60 uppercase tracking-wide">{info.label}</p>
                                                     <p className="font-medium group-hover:text-primary transition-colors truncate">{info.value}</p>
                                                 </div>
-                                                <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
+                                                <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary shrink-0" />
                                             </a>
                                         ) : (
-                                            <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl">
+                                            <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-variant)] rounded-xl w-full max-w-full overflow-hidden">
                                                 <div className={`p-2 sm:p-3 bg-gradient-to-r ${info.color} rounded-lg text-white shrink-0`}>
                                                     <span className="w-4 h-4 sm:w-5 sm:h-5">{info.icon}</span>
                                                 </div>
