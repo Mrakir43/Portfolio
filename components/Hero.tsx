@@ -251,27 +251,7 @@ export default function Hero() {
                     </motion.div>
                 </div>
 
-                {/* Scroll Indicator - Premium & Responsive */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 -translate-x-1/2"
-                >
-                    <a href="/#services" className="flex flex-col items-center gap-2 sm:gap-3 group cursor-pointer">
-                        <div className="relative">
-                            {/* Glowing border */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-primary to-secondary rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity"></div>
-                            <div className="relative w-5 h-9 sm:w-6 sm:h-10 md:w-7 md:h-12 border-2 border-white/30 group-hover:border-primary/50 rounded-full flex justify-center pt-1.5 sm:pt-2 transition-colors">
-                                <motion.div
-                                    animate={{ y: [0, 8, 0] }}
-                                    transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                                    className="w-1 h-2 sm:w-1.5 sm:h-3 bg-gradient-to-b from-primary to-secondary rounded-full"
-                                ></motion.div>
-                            </div>
-                        </div>
-                    </a>
-                </motion.div>
+                {/* Scroll Indicator Removed */}
             </div>
         </section>
     );
